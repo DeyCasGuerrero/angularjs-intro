@@ -1,0 +1,100 @@
+<main>
+  <div>
+    <h1 class="slogan">
+      INTRODUCCION A ANGULAR JS / TS
+    </h1>
+    <p class="lineaintro">Bienvenidos a este proyecto en angular js, en este proyecto veré como consumir datos</p>
+  </div>
+
+  <button (click)="redirectToList()">
+    Click for view the users
+  </button>
+
+</main>
+<section>
+
+  <!-- src/app/user-form/user-form.component.html -->
+<form class="user-form" (ngSubmit)="onSubmit()">
+  <h2>Submit Your Details</h2>
+
+  <div class="form-group">
+    <label for="username">Name:</label>
+    <input
+      id="username"
+      name="username"
+      type="text"
+      placeholder="Enter your name"
+      (input)="onChange($event)" 
+      required
+    />
+  </div>
+
+  <div class="form-group">
+    <label for="password">Password:</label>
+    <input
+      id="password"
+      name="password"
+      type="password"
+      placeholder="Enter your password"
+      (input)="onChange($event)" 
+      required
+    />
+  </div>
+
+  <button type="submit">Submit</button>
+</form>
+
+
+
+  @if (state) {
+    @if (state) {
+    <div class="success">
+      <p>Hola Bienvenido programador, </p>
+    </div>
+    }@else {
+    <div class="error">
+      <p>Error a la hora de iniciar sessión con tus credenciales</p>
+    </div>
+    }
+  }
+
+
+</section>
+
+<section>
+  <div class="users-list">
+    <h2 class="title">Users List</h2>
+    
+    @for (user of users; track user.id) {
+      <div class="user-card">
+        <h1 class="user-name">{{ user.id }} - {{ user.name }}</h1>
+        <div class="user-details">
+          <p class="user-age">Edad: {{ user.age }}</p>
+          
+          <div class="friends-list">
+            <h3 class="section-title">Friends</h3>
+            @for (friend of user.friends; track friend.id) {
+              <div class="friend-card">
+                <p class="friend-name">{{ friend.name }}</p>
+                <p class="friend-age">Edad: {{ friend.age }}</p>
+              </div>
+            }
+          </div>
+          
+          <div class="address-section">
+            <h3 class="section-title">Address</h3>
+            <p class="address">{{ user.address.city }}, {{ user.address.state }}</p>
+            <p class="address">{{ user.address.street }}</p>
+          </div>
+          
+          <div class="hobbies-section">
+            <h3 class="section-title">Hobbies</h3>
+            @for (hobbie of user.hobbies; track hobbie.id) {
+              <p class="hobby">{{ hobbie.id }}. {{ hobbie.name }}</p>
+            }
+          </div>
+        </div>
+      </div>
+    }
+  </div>  
+</section>
